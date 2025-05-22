@@ -1,0 +1,203 @@
+/* src/components/ContactSection/ContactSection.css */
+.contact-section {
+  padding: 60px 0; /* Ajustado para que el padding del .container interno haga el espaciado lateral */
+  background-color: var(--background-color-offset, var(--card-bg)); /* Fondo ligeramente distinto */
+}
+
+.contact-section-title {
+  /* Hereda estilos de .section-title de index.css */
+  /* El ::after ya está definido globalmente para .section-title */
+  /* Si necesitas algo específico aquí, añádelo. */
+  margin-bottom: 20px; /* Reducir el margen si el intro text ya da espacio */
+}
+
+.contact-intro-text {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--text-color-secondary);
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-form {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: var(--card-bg);
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px var(--card-shadow);
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.form-row .form-group {
+  flex-grow: 1;
+  min-width: calc(50% - 10px);
+  box-sizing: border-box;
+  flex: 1;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--primary-color-light-transparent);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.error-message {
+  display: block;
+  color: var(--error-color);
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.contact-button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 220px;
+  justify-content: center;
+}
+
+.contact-button:hover {
+  transform: translateY(-2px);
+}
+
+.contact-button.whatsapp {
+  background-color: #25D366;
+  color: white;
+}
+.contact-button.whatsapp:hover {
+  background-color: #1DAE54;
+}
+
+.contact-button.email-option {
+  background-color: var(--secondary-color);
+  color: white;
+}
+.contact-button.email-option:hover {
+  background-color: var(--secondary-color-hover);
+}
+
+.contact-button.email-submit {
+  background-color: var(--primary-color);
+  color: white;
+  width: 100%; /* Considera si siempre debe ser 100% o ajustarse */
+}
+.contact-button.email-submit:hover {
+  background-color: var(--primary-color-hover);
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.direct-contact-info {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid var(--border-color);
+}
+/* .dark-mode .direct-contact-info { // Ya no es necesario, --border-color cambia con el tema
+    border-top: 1px solid var(--border-color);
+} */
+
+.direct-contact-info p {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: var(--text-color-secondary);
+}
+.direct-contact-info a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary-color);
+    text-decoration: none;
+    margin: 5px 15px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.direct-contact-info a:hover {
+    color: var(--primary-color-hover);
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+    gap: 0; 
+    margin-bottom: 0;
+  }
+  .form-row .form-group {
+    flex: none;
+    width: 100%;
+    min-width: unset;
+    margin-bottom: 20px; 
+  }
+  .contact-form {
+    padding: 20px;
+  }
+  .contact-button {
+    width: 100%;
+    min-width: unset;
+  }
+}

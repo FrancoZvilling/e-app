@@ -1,0 +1,12 @@
+.navbar-logo-container {
+  display: flex;
+  justify-content: center; /* Centra el logo horizontalmente */
+  align-items: center;
+  padding: 15px 0; /* Espaciado vertical, sin espaciado horizontal ya que el centrado lo maneja */
+  background-color: var(--navbar-logo-bg); /* Usar variable CSS global */
+}
+
+.navbar-logo-image {
+  max-height: 150px; /* Ajusta el tamaño del logo */
+  width: auto; /* Mantiene la proporción del logo */
+}

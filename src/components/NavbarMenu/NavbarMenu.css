@@ -1,0 +1,112 @@
+/* src/components/NavbarMenu/NavbarMenu.css */
+.navbar-menu-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  background-color: var(--navbar-menu-bg);
+  color: var(--navbar-menu-text);
+  position: sticky;
+  /*
+    Si NavbarLogo también es sticky y tiene, por ejemplo, 90px de altura,
+    entonces este top debería ser top: 90px; para que se pegue debajo.
+    Si NavbarLogo NO es sticky, top: 0; está bien para que este se pegue al viewport.
+    Por ahora, asumo que NavbarLogo no es sticky o su altura es manejada de otra forma.
+  */
+  top: 0; 
+  z-index: 999;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar-menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center; /* Alinea verticalmente los botones con y sin icono */
+  gap: 25px;
+}
+
+/* Estilo general para los botones de navegación */
+.nav-button {
+  background: none;
+  border: none;
+  color: var(--navbar-menu-text);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 0px; /* Mantenemos el padding vertical, el horizontal viene del gap y del contenido */
+  transition: color 0.3s ease, border-bottom-color 0.3s ease;
+  position: relative;
+  display: flex; /* Para alinear icono y texto */
+  align-items: center; /* Para alinear icono y texto */
+  gap: 6px; /* Espacio entre icono y texto */
+}
+
+.nav-button::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  display: block;
+  /* margin-top: 5px;  No es necesario si posicionamos con bottom */
+  bottom: -2px; /* Posiciona la línea justo debajo del botón */
+  right: 0; /* Inicia desde la derecha para la animación de crecimiento */
+  background: var(--primary-color);
+  transition: width 0.3s ease;
+  -webkit-transition: width 0.3s ease;
+}
+
+.nav-button:hover::after {
+  width: 100%;
+  left: 0; /* Al hacer hover, se expande desde la izquierda */
+  background: var(--primary-color-hover);
+}
+
+.nav-button:hover {
+  color: var(--primary-color-light);
+}
+
+.nav-icon {
+  /* Ajustes opcionales para el icono de casa si es necesario */
+  font-size: 1.1rem; /* Ligeramente más grande para que destaque un poco */
+  /* margin-bottom: -2px;  Podría ser útil para alineación fina con el texto */
+}
+
+
+.navbar-menu-utils {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.navbar-menu-utils button {
+  background: none;
+  border: none;
+  color: var(--navbar-menu-text);
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar-menu-utils button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--primary-color-light);
+}
+
+.navbar-menu-utils button svg { /* Para que los iconos de react-icons hereden color */
+  color: inherit;
+}
+
+.flag-icon {
+  width: 24px;
+  height: auto;
+  display: block;
+}

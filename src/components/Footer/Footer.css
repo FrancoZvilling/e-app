@@ -1,0 +1,99 @@
+/* src/components/Footer/Footer.css */
+.site-footer {
+  background-color: var(--navbar-menu-bg);
+  color: var(--navbar-menu-text, #ccc);
+  padding: 50px 0 20px;
+  font-size: 0.9rem;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start; /* Asegura que los topes de las columnas se alineen */
+  gap: 30px;
+  padding-bottom: 30px;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 220px; /* Ancho mínimo antes de envolver */
+  margin-bottom: 20px; /* Espacio si se apilan */
+  box-sizing: border-box;
+}
+
+/* Estilo para los títulos de columna, incluyendo el nuevo "E-APP" */
+.footer-column h4 {
+  font-size: 1.1rem; /* Mismo tamaño para todos los h4 */
+  color: var(--primary-color-light, #fff);
+  margin-top: 0; /* CLAVE: Sin margen superior para ayudar a la alineación */
+  margin-bottom: 20px;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 10px; /* Espacio para la línea decorativa */
+  line-height: 1.4; /* Ajusta si es necesario para la altura vertical */
+}
+
+
+.footer-company-description {
+  line-height: 1.7;
+  color: var(--navbar-menu-text-subtle, #a0a0a0);
+  font-size: 0.85rem; /* Un poco más pequeño que el texto general del footer */
+  margin-top: -10px; /* Reducir un poco el espacio si el h4 ya tiene padding-bottom */
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+}
+
+.footer-column ul li a,
+.footer-column ul li button,
+.footer-column ul li span {
+  color: var(--navbar-menu-text, #ccc);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.footer-column ul li button {
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+}
+
+.footer-column ul li a:hover,
+.footer-column ul li button:hover {
+  color: var(--primary-color-light, #fff);
+}
+
+.footer-column ul li svg {
+  color: var(--primary-color);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color-footer, #444);
+  font-size: 0.85rem;
+  color: var(--navbar-menu-text-subtle, #a0a0a0);
+}
+
+.footer-bottom p {
+  margin: 5px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  /* Comportamiento por defecto de flex-wrap y min-width debería manejar el apilado.
+     Puedes añadir text-align: center; a .footer-column si lo deseas aquí. */
+}

@@ -1,0 +1,28 @@
+/* src/components/ProjectsSection/ProjectsSection.css */
+.projects-section {
+  padding: 60px 0; /* Ajustado para que el padding del .container interno haga el espaciado lateral */
+  background-color: var(--background-color);
+}
+
+/* Los estilos para .section-title y .container ahora están en index.css */
+/* Por lo tanto, .projects-section-title solo necesita la clase .section-title en el HTML */
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  /* max-width y margin auto están en .container (index.css) */
+}
+
+/* Ajustes para pantallas más pequeñas si es necesario */
+@media (max-width: 768px) {
+  .projects-grid {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-section {
+    padding: 40px 0;
+  }
+}

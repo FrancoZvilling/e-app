@@ -1,3 +1,55 @@
+/* src/index.css */
+:root {
+  /* Paleta de Colores Modo Claro (Ejemplo) */
+  --primary-color: #6a11cb; /* Un morado llamativo */
+  --primary-color-hover: #8c1fff;
+  --primary-color-light: #b983ff;
+  --secondary-color: #2575fc; /* Un azul */
+  --background-color: #ffffff;
+  --text-color: #333333;
+  --text-color-secondary: #555; /* Añadido para descripciones o texto menos prominente */
+  --navbar-logo-bg: #f8f9fa;
+  --navbar-menu-bg: #343a40;
+  --navbar-menu-text: #ffffff;
+  --card-bg: #fdfdfd;
+  --card-shadow: rgba(0, 0, 0, 0.08); /* Ligeramente más suave */
+  --card-shadow-hover: rgba(0, 0, 0, 0.15); /* Sombra para hover de cards */
+  --border-color: #ddd;
+  --input-bg: #f9f9f9;
+  --primary-color-light-transparent: rgba(106, 17, 203, 0.1); /* Más sutil */
+  --error-color: #d32f2f;
+  /* --secondary-color: #007bff; */ /* Ya estaba --secondary-color: #2575fc; */
+  /* --secondary-color-hover: #0056b3; */
+  --navbar-menu-text-subtle: #777777;
+  --border-color-footer: #e0e0e0;
+  --background-color-offset: #f8f9fa; /* Para secciones con ligero contraste de fondo */
+}
+
+.dark-mode {
+  /* Paleta de Colores Modo Oscuro (Ejemplo) */
+  --primary-color: #8c1fff;
+  --primary-color-hover: #b983ff;
+  --primary-color-light: #d3a7ff;
+  --secondary-color: #4dabf7;
+  --background-color: #121212;
+  --text-color: #e0e0e0;
+  --text-color-secondary: #b0b0b0; /* Añadido para modo oscuro */
+  --navbar-logo-bg: #1e1e1e;
+  --navbar-menu-bg: #2c2c2c;
+  --navbar-menu-text: #e0e0e0;
+  --card-bg: #1f1f1f;
+  --card-shadow: rgba(255, 255, 255, 0.05);
+  --card-shadow-hover: rgba(255, 255, 255, 0.1); /* Sombra para hover de cards en modo oscuro */
+  --border-color: #444;
+  --input-bg: #2a2a2a;
+  --primary-color-light-transparent: rgba(140, 31, 255, 0.2); /* Más sutil */
+  /* --secondary-color: #3793ff; */
+  /* --secondary-color-hover: #52a3ff; */
+  --navbar-menu-text-subtle: #999999;
+  --border-color-footer: #3a3a3a;
+  --background-color-offset: #1a1a1a; /* Para secciones con ligero contraste de fondo en modo oscuro */
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +57,73 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  scroll-behavior: smooth;
+}
+
+button {
+  font-family: inherit;
+}
+
+.navbar-menu-utils button svg {
+  color: inherit;
+}
+
+/* Estilo general para los títulos de sección, definido aquí para reutilizar */
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-color); /* Color del texto principal para títulos */
+  margin-bottom: 50px; /* Espacio estándar debajo del título */
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background-color: var(--primary-color);
+  margin: 15px auto 0; /* Centra la línea debajo del texto */
+  border-radius: 2px;
+}
+
+/* Un contenedor general para centrar contenido y aplicar padding */
+.container {
+    width: 100%;
+    max-width: 1200px; /* Ancho máximo del contenido principal */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px; /* Padding horizontal para el contenido */
+    padding-right: 20px;
+    box-sizing: border-box; /* Para que el padding no aumente el width total */
+}
+
+/* Ajustes responsivos para .section-title */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+  .section-title::after {
+    width: 60px;
+    margin-top: 10px;
+  }
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+   .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+  }
 }
