@@ -8,6 +8,7 @@
   flex-direction: column;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease; /* Añadida transition para bg */
   height: 100%; /* Para que todas las tarjetas en una fila tengan la misma altura si el contenido varía */
+  border: 1px solid rgba(0, 0, 0, 0.966);
 }
 
 .project-card:hover {

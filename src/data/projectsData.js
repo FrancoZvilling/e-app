@@ -1,10 +1,11 @@
 // src/data/projectsData.js
-import zapaImage from '../assets/images/projects/zapa.webp' // Asumo que esta imagen ahora representa "Tienda online"
-import hotelImage from '../assets/images/projects/hotel.webp' // Para "Pagina web de hoteleria"
+import zapaImage from '../assets/images/projects/tienda-ropa.png' // Asumo que esta imagen ahora representa "Tienda online"
+import hotelImage from '../assets/images/projects/hotel.png' // Para "Pagina web de hoteleria"
 import cartaWeb from '../assets/images/projects/cartaweb.webp' // Asumo que esta imagen ahora representa "Carta QR para local"
 import cartaWebDel from '../assets/images/projects/cartawebdelivery.webp' // Para "Carta QR + delivery"
 import library from '../assets/images/projects/library.png' // Para "Web para libreria"
 import portfolio from '../assets/images/projects/portfolio.png' // Para "Portafolio personal"
+
 
 // Tecnologías comunes a todos los proyectos
 const commonTechnologies = ["HTML", "CSS", "JavaScript", "React.js"];
@@ -22,7 +23,7 @@ export const projectsData = [
       en: "Complete e-commerce solution adaptable to various niches like clothing, jewelry, cosmetics, and more. Includes cart and product management.",
     },
     image: zapaImage,
-    demoUrl: "https://ejemplo.com/tienda-online-emprendimientos", // Actualiza si es necesario
+    demoUrl: "https://tiendaropa-e-app.netlify.app/", // Actualiza si es necesario
     technologies: [...commonTechnologies, "Node.js", "Stripe"], // Añadido commonTech, puedes ajustar las específicas
   },
   {
@@ -52,7 +53,7 @@ export const projectsData = [
       en: "Web solution for hotels and accommodations. Showcase your facilities, services, and let guests get to know you better.",
     },
     image: hotelImage,
-    demoUrl: "https://ejemplo.com/web-hoteleria", // Actualiza si es necesario
+    demoUrl: "https://demo-hotel-eapp.netlify.app/", // Actualiza si es necesario
     technologies: [...commonTechnologies, "API Reservas (ej.)"], // Añadido commonTech, puedes ajustar
   },
   {
