@@ -3,19 +3,32 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 40px;
+  padding: 10px 20px; /* Reducido padding para mejor ajuste inicial */
   background-color: var(--navbar-menu-bg);
   color: var(--navbar-menu-text);
   position: sticky;
-  /*
-    Si NavbarLogo también es sticky y tiene, por ejemplo, 90px de altura,
-    entonces este top debería ser top: 90px; para que se pegue debajo.
-    Si NavbarLogo NO es sticky, top: 0; está bien para que este se pegue al viewport.
-    Por ahora, asumo que NavbarLogo no es sticky o su altura es manejada de otra forma.
-  */
   top: 0; 
-  z-index: 999;
+  z-index: 1000; /* Elevado para estar sobre otros elementos sticky */
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Botón Hamburguesa */
+.hamburger-button {
+  display: none; /* Oculto por defecto, se mostrará en móviles */
+  background: none;
+  border: none;
+  color: var(--navbar-menu-text);
+  font-size: 1.6rem; /* Ajustar tamaño según sea necesario */
+  cursor: pointer;
+  padding: 8px; /* Área de toque adecuada */
+  z-index: 1002; /* Por encima del menú desplegable */
+  line-height: 1; /* Evitar altura extra */
+}
+.hamburger-button:hover {
+  color: var(--primary-color-light);
+}
+.hamburger-button svg {
+  display: block;
 }
 
 .navbar-menu-list {
@@ -23,24 +36,25 @@
   padding: 0;
   margin: 0;
   display: flex;
-  align-items: center; /* Alinea verticalmente los botones con y sin icono */
-  gap: 25px;
+  align-items: center;
+  gap: 20px; /* Espacio entre elementos de menú */
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
-/* Estilo general para los botones de navegación */
 .nav-button {
   background: none;
   border: none;
   color: var(--navbar-menu-text);
-  font-size: 1rem;
+  font-size: 0.95rem; /* Ligeramente más pequeño para más ítems si es necesario */
   font-weight: 500;
   cursor: pointer;
-  padding: 8px 0px; /* Mantenemos el padding vertical, el horizontal viene del gap y del contenido */
+  padding: 8px 0px;
   transition: color 0.3s ease, border-bottom-color 0.3s ease;
   position: relative;
-  display: flex; /* Para alinear icono y texto */
-  align-items: center; /* Para alinear icono y texto */
-  gap: 6px; /* Espacio entre icono y texto */
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
 }
 
 .nav-button::after {
@@ -49,17 +63,15 @@
   width: 0;
   height: 2px;
   display: block;
-  /* margin-top: 5px;  No es necesario si posicionamos con bottom */
-  bottom: -2px; /* Posiciona la línea justo debajo del botón */
-  right: 0; /* Inicia desde la derecha para la animación de crecimiento */
+  bottom: -2px;
+  right: 0;
   background: var(--primary-color);
   transition: width 0.3s ease;
-  -webkit-transition: width 0.3s ease;
 }
 
 .nav-button:hover::after {
   width: 100%;
-  left: 0; /* Al hacer hover, se expande desde la izquierda */
+  left: 0;
   background: var(--primary-color-hover);
 }
 
@@ -68,45 +80,127 @@
 }
 
 .nav-icon {
-  /* Ajustes opcionales para el icono de casa si es necesario */
-  font-size: 1.1rem; /* Ligeramente más grande para que destaque un poco */
-  /* margin-bottom: -2px;  Podría ser útil para alineación fina con el texto */
+  font-size: 1.1rem;
 }
-
 
 .navbar-menu-utils {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 10px; /* Gap entre botones de utilidades */
 }
 
-.navbar-menu-utils button {
+.util-button { /* Clase específica para botones de utilidad */
   background: none;
   border: none;
   color: var(--navbar-menu-text);
   cursor: pointer;
-  font-size: 1.2rem;
-  padding: 5px;
+  font-size: 1.1rem; /* Tamaño de iconos de utilidad */
+  padding: 8px; /* Área de toque */
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  width: 36px;
+  width: 36px; 
   height: 36px;
   transition: background-color 0.3s ease, color 0.3s ease;
+  line-height: 1;
 }
 
-.navbar-menu-utils button:hover {
+.util-button:hover {
   background-color: rgba(255, 255, 255, 0.1);
   color: var(--primary-color-light);
 }
 
-.navbar-menu-utils button svg { /* Para que los iconos de react-icons hereden color */
+.util-button svg {
   color: inherit;
+  display: block;
 }
 
 .flag-icon {
-  width: 24px;
+  width: 22px; /* Tamaño de bandera */
   height: auto;
   display: block;
+}
+
+/* --- Media Query para Móviles (ej. <= 768px) --- */
+@media (max-width: 768px) {
+  .navbar-menu-container {
+    padding: 10px 15px; /* Padding ajustado para móvil */
+    /* justify-content: space-between; ya está, pero esto asegura que el botón hamburguesa
+       y las utilidades se separen correctamente */
+  }
+
+  .hamburger-button {
+    display: flex; /* Mostrar el botón hamburguesa */
+  }
+
+  /* El menú en móvil */
+  .navbar-menu-list {
+    /* Oculto por defecto, se mostrará con .mobile-open */
+    display: none; 
+    /* Cuando se muestre con .mobile-open, se aplicarán los siguientes estilos */
+    position: absolute;
+    top: 100%; /* Justo debajo del navbar-menu-container */
+    left: 0;
+    right: 0; /* O width: 100%; */
+    background-color: var(--navbar-menu-bg-mobile, var(--navbar-menu-bg)); /* Permite un fondo diferente en móvil si se define la variable */
+    flex-direction: column;
+    align-items: stretch; /* Que los items ocupen todo el ancho disponible */
+    padding: 10px 0; /* Padding vertical dentro del menú desplegado */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    border-top: 1px solid var(--navbar-menu-separator, rgba(255, 255, 255, 0.1));
+    z-index: 1001; /* Debajo del botón hamburguesa si es necesario, pero encima del contenido */
+
+    /* Animación de entrada/salida */
+    opacity: 0;
+    transform: translateY(-10px); /* Inicia ligeramente arriba */
+    visibility: hidden; /* Oculto para accesibilidad y clics */
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  }
+
+  .navbar-menu-list.mobile-open {
+    display: flex; /* Cambiar a flex para que se muestre */
+    opacity: 1;
+    transform: translateY(0); /* Posición final */
+    visibility: visible;
+  }
+
+  .navbar-menu-list li {
+    width: 100%;
+  }
+
+  .nav-button {
+    padding: 12px 20px; /* Padding para items de menú móvil */
+    justify-content: flex-start;
+    width: 100%;
+    font-size: 1rem; /* Tamaño de fuente para móvil */
+    border-bottom: 1px solid var(--navbar-menu-separator-item, rgba(255,255,255,0.05));
+  }
+  .navbar-menu-list li:last-child .nav-button {
+    border-bottom: none;
+  }
+
+  .nav-button::after {
+    display: none; /* Ocultar la línea animada en móvil */
+  }
+
+  .nav-button:hover,
+  .nav-button:focus { /* Añadido :focus para accesibilidad */
+    background-color: rgba(255,255,255,0.05);
+    color: var(--primary-color-light);
+  }
+
+  /* Ajustar utilidades si es necesario para móvil */
+  .navbar-menu-utils {
+    gap: 5px; /* Menor gap para utilidades en móvil */
+  }
+  .util-button {
+    font-size: 1rem;
+    width: 32px;
+    height: 32px;
+    padding: 6px;
+  }
+  .flag-icon {
+    width: 20px;
+  }
 }
