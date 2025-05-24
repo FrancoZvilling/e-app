@@ -1,14 +1,17 @@
 import React, { useContext } from 'react';
 import './ProjectCard.css';
-import { LanguageContext } from '../../contexts/LanguageContext';
-import { FaExternalLinkAlt } from 'react-icons/fa'; // Icono para el enlace
+import { LanguageContext } from '../../contexts/LanguageContext'; // Asegúrate que la ruta sea correcta
+import { FaExternalLinkAlt } from 'react-icons/fa';
 
 const ProjectCard = ({ project }) => {
-  const { getUIText, currentLang } = useContext(LanguageContext);
+  // Asumiendo que LanguageContext está configurado y funciona.
+  const context = useContext(LanguageContext);
+  const currentLang = context ? context.currentLang : 'es'; // Fallback a 'es'
+  const getUIText = context ? context.getUIText : (key, fallback) => fallback; // Fallback para getUIText
 
   // Obtener el título y descripción en el idioma actual
-  const title = project.title[currentLang] || project.title.es;
-  const description = project.description[currentLang] || project.description.es;
+  const title = project.title[currentLang] || project.title.es; // Fallback a 'es' si el idioma no está en el objeto
+  const description = project.description[currentLang] || project.description.es; // Fallback a 'es'
   const buttonText = getUIText('viewDemoButton', 'Ver Demo');
 
   return (
@@ -19,17 +22,11 @@ const ProjectCard = ({ project }) => {
       <div className="project-card-content">
         <h3 className="project-card-title">{title}</h3>
         <p className="project-card-description">{description}</p>
-        {project.technologies && project.technologies.length > 0 && (
-          <div className="project-card-technologies">
-            {project.technologies.map((tech, index) => (
-              <span key={index} className="tech-tag">{tech}</span>
-            ))}
-          </div>
-        )}
-        <a 
-          href={project.demoUrl} 
-          target="_blank" 
-          rel="noopener noreferrer" 
+        {/* La sección de tecnologías ha sido eliminada */}
+        <a
+          href={project.demoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
           className="project-card-button"
         >
           {buttonText} <FaExternalLinkAlt size="0.8em" />

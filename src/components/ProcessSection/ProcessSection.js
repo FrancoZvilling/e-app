@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import './ProcessSection.css';
-import { LanguageContext } from '../../contexts/LanguageContext';
-import { FaComments, FaCodeBranch, FaClipboardList, FaRocket, FaShoppingCart } from 'react-icons/fa'; // Iconos para los pasos
+import { LanguageContext } from '../../contexts/LanguageContext'; // Asegúrate que la ruta sea correcta
+import { FaComments, FaCodeBranch, FaClipboardList, FaRocket, FaShoppingCart, FaTags } from 'react-icons/fa';
 
-// Datos de los pasos del proceso (podrían ir en un archivo separado si crecen mucho)
+// Datos de los pasos del proceso, incluyendo la información de precios
 const processStepsData = {
   es: [
     {
@@ -12,7 +12,7 @@ const processStepsData = {
       description: "Comenzamos con una charla para entender tus ideas y lo que necesitas (hotel, tienda, restaurante, etc.). Juntos, definimos el estilo, colores y funciones especiales (modo oscuro, multi-idioma, carrito)."
     },
     {
-      icon: <FaCodeBranch />, // Icono que puede representar la infraestructura/código
+      icon: <FaCodeBranch />,
       title: "2. Tu Espacio Digital Personalizado",
       description: "Preparamos tu 'almacén' seguro en la nube (GitHub) para el código de tu web y configuramos dónde vivirá tu página (Netlify) para que todos la visiten, ¡todo conectado para actualizaciones fáciles!"
     },
@@ -22,14 +22,19 @@ const processStepsData = {
       description: "Con todos los detalles, te presentamos una propuesta clara con el presupuesto y una estimación del tiempo para construir tu sitio web soñado."
     },
     {
-      icon: <FaRocket />, // Usaremos FaRocket para "Manos a la obra" o "Desarrollo"
+      icon: <FaRocket />,
       title: "4. ¡Manos a la Obra! Creamos tu Web",
       description: "Nuestro equipo transforma el diseño en una página web real, funcional, atractiva y optimizada para todos los dispositivos, ¡lista para impresionar!"
     },
     {
-      icon: <FaShoppingCart />, // Icono que puede representar la carga final/producto listo
+      icon: <FaShoppingCart />,
       title: "5. Carga Final y ¡Lanzamiento!",
       description: "Incorporamos tus productos, fotos y textos. Hacemos una revisión final contigo, ¡y tu nueva página web está lista para brillar online!"
+    },
+    { // Nuevo paso/tarjeta para la información de precios
+      icon: <FaTags />,
+      title: "6. Inversión y Presupuesto",
+      description: "Los proyectos web inician desde $65.000 ARS. Este valor se ajusta según la complejidad y las funcionalidades específicas de tu sitio. Recibirás un presupuesto detallado y final para tu aprobación antes de comenzar el desarrollo."
     }
   ],
   en: [
@@ -57,20 +62,30 @@ const processStepsData = {
       icon: <FaShoppingCart />,
       title: "5. Final Content & Launch!",
       description: "We incorporate your products, photos, and texts. We do a final review with you, and your new website is ready to shine online!"
+    },
+    { // New step/card for pricing information
+      icon: <FaTags />,
+      title: "6. Investment & Quoting",
+      description: "Web projects start from $65,000 ARS. This value is adjusted based on the complexity and specific features your site requires. You will receive a detailed, final quote for your approval before development begins."
     }
   ]
 };
 
 
 const ProcessSection = ({ id }) => {
-  const { getUIText, currentLang } = useContext(LanguageContext);
+  // Asumiendo que LanguageContext está configurado y funciona.
+  // Si getUIText no está disponible o no es necesario para el título de esta sección
+  // específicamente, puedes hardcodearlo o manejarlo de otra forma.
+  const context = useContext(LanguageContext);
+  const currentLang = context ? context.currentLang : 'es'; // Fallback a 'es' si el contexto no está disponible
+  const getUIText = context ? context.getUIText : (key, fallback) => fallback; // Fallback para getUIText
 
   const sectionTitle = getUIText('processSectionTitle', 'Nuestro Proceso Simplificado');
-  const steps = processStepsData[currentLang] || processStepsData.es;
+  const steps = processStepsData[currentLang] || processStepsData.es; // Fallback a español si el idioma no existe
 
   return (
     <section id={id} className="process-section">
-      <div className="container">
+      <div className="container"> {/* Asumiendo que tienes una clase .container global para centrar contenido */}
         <h2 className="section-title process-section-title">{sectionTitle}</h2>
         <div className="process-steps-grid">
           {steps.map((step, index) => (

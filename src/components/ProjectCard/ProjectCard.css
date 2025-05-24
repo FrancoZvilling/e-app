@@ -6,19 +6,19 @@
   overflow: hidden; /* Para que la imagen no se salga si tiene bordes redondeados también */
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease; /* Añadida transition para bg */
   height: 100%; /* Para que todas las tarjetas en una fila tengan la misma altura si el contenido varía */
 }
 
 .project-card:hover {
   transform: translateY(-8px) scale(1.02); /* Efecto de elevación y ligero zoom */
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2); /* Sombra más intensa en hover */
+  box-shadow: 0 12px 28px var(--card-shadow-hover, rgba(0, 0, 0, 0.2)); /* Sombra más intensa en hover, usar variable */
 }
 
 .project-card-image-container {
   width: 100%;
   /* Mantener una relación de aspecto para las imágenes, ej: 4:3 */
-  padding-top: 75%; /* 3/4 * 100% = 75% (para aspecto 4:3) */
+  padding-top: 75%; /* 3/4 * 100% = 75% (para aspecto 4:3). Ajustar si se necesita otro aspect ratio. */
   position: relative;
   overflow: hidden; /* Asegura que la imagen no se desborde */
 }
@@ -50,59 +50,44 @@
   color: var(--text-color);
   margin-top: 0;
   margin-bottom: 10px;
+  transition: color 0.3s ease; /* Transición para el color del título */
 }
 
 .project-card-description {
   font-size: 0.95rem;
   color: var(--text-color-secondary, #555); /* Definir --text-color-secondary en :root o .dark-mode */
-  margin-bottom: 15px;
+  margin-bottom: 15px; /* Espacio antes del botón */
   line-height: 1.6;
-  flex-grow: 1; /* Empuja el botón y las tecnologías hacia abajo si la descripción es corta */
+  flex-grow: 1; /* Empuja el botón hacia abajo si la descripción es corta */
+  transition: color 0.3s ease; /* Transición para el color de la descripción */
 }
 
-.project-card-technologies {
-  margin-bottom: 15px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.tech-tag {
-  background-color: var(--primary-color-light, #e0e0e0);
-  color: var(--navbar-menu-bg); /* Color de texto oscuro para contraste en tag claro */
-  padding: 4px 10px;
-  border-radius: 16px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-}
-
-/* Ajuste para modo oscuro en tags */
-.dark-mode .tech-tag {
-  background-color: var(--primary-color); /* Un color primario más oscuro para el tag */
-  color: var(--navbar-menu-text); /* Texto claro */
-}
-
+/* Las clases .project-card-technologies y .tech-tag han sido eliminadas */
 
 .project-card-button {
   background-color: var(--primary-color);
-  color: white;
+  color: white; /* Asegurar que el color del texto del botón sea blanco o el que contraste bien */
   padding: 10px 18px;
   text-decoration: none;
   border-radius: 8px;
   font-weight: 600;
   font-size: 0.9rem;
   text-align: center;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
   display: inline-flex; /* Para alinear icono y texto */
   align-items: center;
   justify-content: center;
   gap: 8px; /* Espacio entre texto e icono */
   align-self: flex-start; /* Alinea el botón a la izquierda si el contenedor es flex */
-  margin-top: auto; /* Empuja el botón hacia abajo */
+  margin-top: auto; /* Empuja el botón hacia abajo, asegurando que esté al final del card-content */
 }
 
 .project-card-button:hover {
   background-color: var(--primary-color-hover);
   transform: translateY(-2px);
+}
+
+/* Asegurar que los iconos dentro del botón tomen el color correcto */
+.project-card-button svg {
+  fill: currentColor; /* O color: white; si es específico para este botón */
 }
