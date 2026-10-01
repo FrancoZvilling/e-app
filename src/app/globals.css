@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #020a18;
+  --navy-light: #071020;
+  --orange: #ff6b00;
+  --amber: #ffb800;
+  --sky: #00c2ff;
+  --blue-mid: #2563eb;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #020a18;
+  color: #e2e8f0;
+  font-family: 'Outfit', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #020a18; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff6b00, #00c2ff);
+  border-radius: 2px;
+}
+
+/* --- GLASS --- */
+.glass {
+  background: rgba(7, 16, 32, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-warm {
+  background: rgba(255, 107, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.glass-cool {
+  background: rgba(0, 194, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* --- GRADIENT TEXT --- */
+.gradient-text-warm {
+  background: linear-gradient(120deg, #ff6b00, #ffb800);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-cool {
+  background: linear-gradient(120deg, #00c2ff, #2563eb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-both {
+  background: linear-gradient(120deg, #ff6b00 0%, #ffb800 35%, #00c2ff 65%, #2563eb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* --- GLOW --- */
+.glow-warm {
+  box-shadow: 0 0 25px rgba(255, 107, 0, 0.35), 0 0 50px rgba(255, 107, 0, 0.12);
+}
+
+.glow-cool {
+  box-shadow: 0 0 25px rgba(0, 194, 255, 0.35), 0 0 50px rgba(0, 194, 255, 0.12);
+}
+
+.glow-both {
+  box-shadow: 0 0 40px rgba(255, 107, 0, 0.2), 0 0 80px rgba(0, 194, 255, 0.15);
+}
+
+/* --- SERVICE CARD IMAGE AREA --- */
+.card-image-area {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+/* --- ANIMATED BORDER GRADIENT on hover --- */
+.service-card {
+  position: relative;
+  border-radius: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 1.5px;
+  background: linear-gradient(135deg, rgba(255,107,0,0) 0%, rgba(255,107,0,0.6) 50%, rgba(0,194,255,0) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.service-card:hover::after {
+  opacity: 1;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 107, 0, 0.08);
+}
+
+/* FAQ open state - cyan */
+.faq-open {
+  border-color: rgba(0, 194, 255, 0.4) !important;
+  box-shadow: 0 0 20px rgba(0, 194, 255, 0.12);
+}
+
+/* Subtle grid overlay */
+.grid-overlay {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
